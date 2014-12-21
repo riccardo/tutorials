@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="com.rictomasi.home_hacks.tutorials.osgi.IPDService">
+   <implementation class="com.rictomasi.home_hacks.tutorial.osgi.demoservice.impl.IPDServiceImpl"/>
+   <service>
+      <provide interface="com.rictomasi.home_hacks.tutorial.osgi.demoservice.api.IPDService"/>
+      <provide interface="org.osgi.service.cm.ManagedService"/>
+   </service>
+   <property name="service.pid" type="String" value="com.rictomasi.home_hacks.tutorials.osgi.IPDService"/>
+</scr:component>

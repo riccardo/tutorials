@@ -1,0 +1,17 @@
+http://localhost:8080/system/console/bundles
+-Dorg.osgi.service.http.port=8080
+
+
+# To check later
+
+http://wiki.eclipse.org/Jetty/Feature/Jetty_OSGi
+http://mvnrepository.com/artifact/org.eclipse.jetty.osgi
+
+
+
+
+
+
+
+
+
