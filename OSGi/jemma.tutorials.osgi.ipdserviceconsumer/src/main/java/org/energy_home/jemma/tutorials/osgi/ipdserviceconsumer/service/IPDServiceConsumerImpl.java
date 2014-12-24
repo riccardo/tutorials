@@ -1,3 +1,19 @@
+/**
+ * This file is part of JEMMA - http://jemma.energy-home.org
+ * (C) Copyright 2014 Istituto Superiore Mario Boella (http://www.ismb.it)
+ *
+ * JEMMA is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License (LGPL) version 3
+ * or later as published by the Free Software Foundation, which accompanies
+ * this distribution and is available at http://www.gnu.org/licenses/lgpl.html
+ *
+ * JEMMA is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License (LGPL) for more details.
+ *
+ */
+
 package org.energy_home.jemma.tutorials.osgi.ipdserviceconsumer.service;
 
 import java.io.IOException;
@@ -16,18 +32,27 @@ import org.osgi.service.cm.ManagedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+* A simple consumer for the IPDService
+* 
+* @author https://github.com/riccardo
+* */
 public class IPDServiceConsumerImpl implements ManagedService{
 	
-	private IPDService ipdservice;
-	private IPDServiceConsumerRunner runner;
+	/// this field points to IDPService when bound, otherwise stays null. 
+	private IPDService ipdservice = null;
+	
+	/// Thread that periodically calls IDPService
+	private IPDServiceConsumerRunner runner = null;
+	
 	private static final Logger LOG = LoggerFactory.getLogger( IPDServiceConsumerImpl.class );
+	
 	private static final long DEFAULT_PERIODICITY_MS = 1024;
 	protected long periodicity_ms=DEFAULT_PERIODICITY_MS;
 	
+	
 	protected void activate() {
-		LOG.debug("Activating DemoConsumerService");
-
-		
+		LOG.debug("Activating IPDConsumerService");
 		this.runner = new IPDServiceConsumerRunner(this.periodicity_ms,this.ipdservice);
 		Thread r = new Thread(this.runner);
 		r.start();
@@ -35,7 +60,7 @@ public class IPDServiceConsumerImpl implements ManagedService{
 	}
 
 	protected void deactivate() {
-		LOG.debug("Deactivating DemoConsumerService");
+		LOG.debug("Deactivating IPDConsumerService");
 		this.runner.stop();
 	}
 
@@ -50,6 +75,9 @@ public class IPDServiceConsumerImpl implements ManagedService{
 		this.ipdservice=null;
 	}
 
+	/**
+	 * This function isi called upon configuration load or name
+	 * */
 	@Override
 	public void updated(Dictionary<String, ?> props)
 			throws ConfigurationException {
@@ -70,10 +98,6 @@ public class IPDServiceConsumerImpl implements ManagedService{
         	LOG.trace("this.periodicity_ms set to:",this.periodicity_ms);
         	this.runner.setPeriodicity(this.periodicity_ms);
         }
-        
-        
-        
-		
 	}
 	
 	private void createDefaultConfiguration() {
@@ -101,8 +125,8 @@ public class IPDServiceConsumerImpl implements ManagedService{
             	}
 
             	// set some properties
-            	LOG.trace("setting this.periodicity_ms set to default:",this.DEFAULT_PERIODICITY_MS);
-            	this.periodicity_ms=this.DEFAULT_PERIODICITY_MS;
+            	LOG.trace("setting this.periodicity_ms set to default:",IPDServiceConsumerImpl.DEFAULT_PERIODICITY_MS);
+            	this.periodicity_ms=IPDServiceConsumerImpl.DEFAULT_PERIODICITY_MS;
             	props.put("periodicity_ms", this.periodicity_ms+"");
             	
 
