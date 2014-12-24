@@ -17,10 +17,13 @@
 package org.energy_home.jemma.tutorials.osgi.ipdservice.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.energy_home.jemma.tutorials.osgi.ipdservice.api.IPDService;
+import org.energy_home.jemma.tutorials.osgi.ipdservice.api.NoMessageAvailableExeption;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -40,23 +43,16 @@ import org.slf4j.LoggerFactory;
 public class IPDServiceImpl implements IPDService, ManagedService{
 	
 	private static final Logger LOG = LoggerFactory.getLogger( IPDServiceImpl.class );
-
-	public static final double DEFAULT_ENERGY_CONSUMPTION = 10;
+	public static final String DEFAULT_MESSAGE = "IPDService";
+	private List<String> stack = new ArrayList<String>();
+	private String currentmessage = DEFAULT_MESSAGE;
 	
-	private double energy_consumption=DEFAULT_ENERGY_CONSUMPTION;
-
 	protected void activate() {
 		LOG.debug("Activating IPDService");
 	}
 	
 	protected void deactivate() {
 		LOG.debug("Deactivating IPDService");
-	}
-
-	@Override
-	public double getEnergyConsumption() {
-		LOG.info("getEnergyConsumption called, returning: " + this.energy_consumption);
-		return this.energy_consumption;
 	}
 
 	@Override
@@ -72,9 +68,9 @@ public class IPDServiceImpl implements IPDService, ManagedService{
         } else {
             // apply configuration from config admin
         	LOG.debug("Configuration changed or made available by ConfigAdmin: loading");
-        	String tmp_energy_consumption =  (String) props.get("energy_consumption");
-        	this.energy_consumption=Double.parseDouble(tmp_energy_consumption);
-        	LOG.trace("this.energy_consumption set to:",this.energy_consumption);
+        	String tmp_currentmessage =  (String) props.get("currentmessage");
+        	this.currentmessage =tmp_currentmessage;
+        	LOG.trace("this.currentmessage  set to:",this.currentmessage);
         }
 		
 	}
@@ -104,9 +100,9 @@ public class IPDServiceImpl implements IPDService, ManagedService{
             	}
 
             	// set some properties
-            	LOG.trace("setting this.energy_consumption set to default:",IPDServiceImpl.DEFAULT_ENERGY_CONSUMPTION);
-            	props.put("energy_consumption", this.DEFAULT_ENERGY_CONSUMPTION+"");
-            	this.energy_consumption=IPDServiceImpl.DEFAULT_ENERGY_CONSUMPTION;
+            	LOG.trace("setting this.currentmessage  set to default:",IPDServiceImpl.DEFAULT_MESSAGE);
+            	props.put("currentmessage", this.DEFAULT_MESSAGE+"");
+            	this.currentmessage=IPDServiceImpl.DEFAULT_MESSAGE;
 
             	// update the configuration
             	try {
@@ -117,6 +113,46 @@ public class IPDServiceImpl implements IPDService, ManagedService{
 				}
         }  
 		
+	}
+	
+
+
+	@Override
+	public void pushNewTextMessage(String textmessage) {
+		this.stack.add(textmessage);
+		this.update();
+	}
+
+	//this method is called every time a message is added or removed.
+	private void update() {
+		if(this.stack.size()==0) {
+			this.currentmessage = DEFAULT_MESSAGE;
+		} else {
+			this.currentmessage = this.stack.get(this.stack.size()-1);
+		}
+	}
+
+	@Override
+	public String popOlderTextMessage() throws NoMessageAvailableExeption {
+		if(this.stack.isEmpty()) {
+			throw new NoMessageAvailableExeption();
+		}
+		
+		String ret = this.stack.get(0);
+		this.stack.remove(0);
+		this.update();
+		
+		return ret;
+	}
+
+	@Override
+	public String getCurrentlyDisplayedTextMessage() {
+		return this.currentmessage;
+	}
+
+	@Override
+	public int countStackedTextMessages() {
+		return this.stack.size();
 	}
 
 

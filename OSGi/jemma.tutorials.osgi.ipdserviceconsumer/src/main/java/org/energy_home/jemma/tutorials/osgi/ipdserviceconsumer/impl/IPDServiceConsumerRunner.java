@@ -67,8 +67,8 @@ public class IPDServiceConsumerRunner implements Runnable{
 	private void action() {
 		LOG.trace("*** IPDServiceConsumerRunner action! *** ");
 		if(this.ipdservice!=null) {
-			double ret = this.ipdservice.getEnergyConsumption();
-			LOG.trace("IPDServiceConsumerRunner getEnergyConsumption = " + ret);
+			String ret = this.ipdservice.getCurrentlyDisplayedTextMessage();
+			LOG.trace("IPDServiceConsumerRunner getCurrentlyDisplayedTextMessage = " + ret);
 		} else {
 			LOG.warn("IPDServiceConsumerRunner null! ");
 			
