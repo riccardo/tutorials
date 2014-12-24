@@ -22,8 +22,7 @@ package org.energy_home.jemma.tutorials.osgi.ipdservice.api;
 * @author https://github.com/riccardo
 * */
 public interface IPDService {
-	public void pushNewTextMessage(String textmessage);
-	public String popOlderTextMessage() throws NoMessageAvailableExeption;
-	public String getCurrentlyDisplayedTextMessage();
-	public int countStackedTextMessages();
+	public void setTextMessage(String textmessage);
+	public String getTextMessage();
+
 }

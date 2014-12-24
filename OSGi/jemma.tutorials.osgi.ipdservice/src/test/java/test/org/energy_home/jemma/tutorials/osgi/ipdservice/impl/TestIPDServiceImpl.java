@@ -75,6 +75,6 @@ public class TestIPDServiceImpl {
 	//checks that the service returns the default value
 	@Test
 	public void testGetEnergyConsumption() {
-		assertEquals("IPDService",this.ipdserviceimpl.getCurrentlyDisplayedTextMessage());
+		assertEquals("IPDService",this.ipdserviceimpl.getTextMessage());
 	}
 }

@@ -118,42 +118,20 @@ public class IPDServiceImpl implements IPDService, ManagedService{
 
 
 	@Override
-	public void pushNewTextMessage(String textmessage) {
-		this.stack.add(textmessage);
-		this.update();
+	public void setTextMessage(String textmessage) {
+		this.currentmessage = textmessage;
 	}
 
-	//this method is called every time a message is added or removed.
-	private void update() {
-		if(this.stack.size()==0) {
-			this.currentmessage = DEFAULT_MESSAGE;
-		} else {
-			this.currentmessage = this.stack.get(this.stack.size()-1);
-		}
-	}
+
+
+
 
 	@Override
-	public String popOlderTextMessage() throws NoMessageAvailableExeption {
-		if(this.stack.isEmpty()) {
-			throw new NoMessageAvailableExeption();
-		}
-		
-		String ret = this.stack.get(0);
-		this.stack.remove(0);
-		this.update();
-		
-		return ret;
-	}
-
-	@Override
-	public String getCurrentlyDisplayedTextMessage() {
+	public String getTextMessage() {
 		return this.currentmessage;
 	}
 
-	@Override
-	public int countStackedTextMessages() {
-		return this.stack.size();
-	}
+
 
 
 
