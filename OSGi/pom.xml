@@ -3,11 +3,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.rictomasi.home_hacks</groupId>
-	<artifactId>com.rictomasi.home_hacks.tutorials.osgi</artifactId>
+	<groupId>org.energy-home</groupId>
+	<artifactId>jemma.tutorials.osgi</artifactId>
 	<packaging>pom</packaging> 
-	<name>home_hacks OSGi Tutorial</name>
-	<version>0.0.1</version>
+	<name>JEMMA OSGi Tutorial</name>
+	<version>0.1.0</version>
 
 	<properties>
 		<!--General build properties-->
@@ -34,9 +34,9 @@
 	</properties>
 
 	<modules>
-		<module>osgi-tutorial.ipdservice</module>
-		<module>osgi-tutorial.ipdserviceconsumer</module>
-		<module>osgi-tutorial.Distribution</module>
+		<module>jemma.tutorials.osgi.ipdservice</module>
+		<module>jemma.tutorials.osgi.ipdserviceconsumer</module>
+		<module>jemma.tutorials.osgi.Distribution</module>
 	</modules>
 
 	<build>

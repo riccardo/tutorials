@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.energy_home.jemma.tutorials.osgi.IPDService">
+   <implementation class="org.energy_home.jemma.tutorials.osgi.ipdservice.impl.IPDServiceImpl"/>
+   <service>
+      <provide interface="org.energy_home.jemma.tutorials.osgi.ipdservice.api.IPDService"/>
+      <provide interface="org.osgi.service.cm.ManagedService"/>
+   </service>
+   <property name="service.pid" type="String" value="org.energy_home.jemma.tutorials.osgi.IPDService"/>
+</scr:component>

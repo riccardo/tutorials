@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+
+<target name="IPDService" sequenceNumber="1">
+	<locations>
+		<location path="${resource_loc:/jemma.tutorials.osgi.Distribution}/target/jemma.tutorials.osgi.Distribution-0.1.0-bin/Distribution/dependencies" type="Directory"/>
+	</locations>
+</target>

@@ -1,4 +1,4 @@
-# home-hacks-osgi-tutorial
+# JEMMA OSGi tutorial
 
 Step-by-tutorial covering the main aspects and key choices of the maven-based toolchain.
 

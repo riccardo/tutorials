@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" enabled="true" immediate="true" name="com.rictomasi.home_hacks.tutorials.osgi.IPDServiceConsumer">
-   <implementation class="com.rictomasi.home_hacks.tutorial.osgi.demoserviceconsumer.service.IPDServiceConsumerImpl"/>
-   <reference bind="bindIPDService" cardinality="1..1" interface="com.rictomasi.home_hacks.tutorial.osgi.demoservice.api.IPDService" name="IPDService" policy="static" unbind="unbindIPDService"/>
-   <service>
-      <provide interface="org.osgi.service.cm.ManagedService"/>
-   </service>
-   <property name="service.pid" type="String" value="com.rictomasi.home_hacks.tutorials.osgi.IPDServiceConsumer"/>
-</scr:component>
