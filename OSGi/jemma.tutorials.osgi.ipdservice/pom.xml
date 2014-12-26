@@ -36,7 +36,7 @@
 						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
 						<Bundle-Activator>org.energy_home.jemma.tutorials.osgi.ipdservice.activator.Activator</Bundle-Activator>
 						<Import-Package>org.osgi.framework,
-						org.osgi.service.component,
+						<!--org.osgi.service.component,-->
 						org.osgi.service.cm,
 						org.slf4j,*
 						</Import-Package>
