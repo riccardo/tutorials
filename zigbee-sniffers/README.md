@@ -63,3 +63,26 @@ To make it appear on linux:
 
 http://e2e.ti.com/support/wireless_connectivity/f/158/t/150382
 
+# Sniffing with MC1322xusb dongle
+
+Check out this project: http://sourceforge.net/projects/wiresharkzigbee
+
+Downloading 0.4 from here: http://sourceforge.net/projects/wiresharkzigbee/files/alpha/src_0.4/
+
+(saved off-line as MC1322x_Wireshark_Linux_v0_4.tar.bz2)
+
+
+## To launch
+
+python WS_ZigbeeSnifferPipeWrapper.py --port=/dev/ttyUSB0 --channel=14
+
+(channels 11 -> 26)
+
+wireshark 
+
+-> Capture on pipe.
+
+I found a network on channel 11.
+
+To decrypt https://www.wireshark.org/lists/wireshark-users/201103/msg00046.html
+
