@@ -86,3 +86,13 @@ I found a network on channel 11.
 
 To decrypt https://www.wireshark.org/lists/wireshark-users/201103/msg00046.html
 
+
+
+
+Il roomba usa Zigbee ? http://www.robotreviews.com/chat/viewtopic.php?t=7529&start=20
+Ci si può fare wardriving ? https://www.kismetwireless.net/kisbee/
+
+
+Idea per debuggare : https://www.anaren.com/air-wiki-zigbee/Troubleshooting_Zigbee_Communications
+
+Anche interessante guardarsi i testers: https://www.anaren.com/air-wiki-zigbee
